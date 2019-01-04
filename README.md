@@ -16,4 +16,4 @@ Besides the `start` script, there are also other scripts
 
 # License
 
-This project is licensed under the MIT license, Copyright (c) 2016 Catalin Luntraru.
+This project is licensed under the MIT license, Copyright (c) 2018 Daniele Sesoldi
