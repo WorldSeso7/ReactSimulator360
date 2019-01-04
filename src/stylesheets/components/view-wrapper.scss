@@ -1,0 +1,293 @@
+@import "../variables";
+#viewer-wrapper-cmp {
+  display: flex;
+  flex-flow: column nowrap;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+
+  div.toolbar {
+    position: relative;
+    height: 60px;
+    padding: 10px 15px;
+    //border-bottom: solid 1px $grey-light;
+    img.logo {
+      height: 40px;
+      width: auto;
+    }
+  }
+  div.content {
+    position: relative;
+    height: 100%;
+    #view-viewer-cmp {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      height: 100%;
+      width: 100%;
+      background-color: black;
+    }
+    div.configuration-panel {
+      position: absolute;
+      top: auto;
+      bottom: -100%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 100%;
+      width: 100%;
+      background-color: white;
+      border-top: solid 1px $grey-light;
+      z-index: 99;
+      visibility: hidden;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F9F9F9;
+      }
+
+      &::-webkit-scrollbar {
+        width: 6px;
+        background-color: #F9F9F9;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #bbb;
+      }
+
+      transition: all .5s ease-in;
+
+      @media screen and (min-width: 768px) {
+        width: 40%;
+        max-width: 480px;
+        &.settings {
+          width: 50%;
+          max-width: none;
+        }
+      }
+      @media screen and (min-width: 1024px) {
+        width: 35%;
+      }
+      @media screen and (min-width: 1200px) {
+        width: 30%;
+      }
+      @media screen and (min-width: 768px) {
+        border-left: solid 1px $grey-light;
+        transition: all .5s ease-in;
+        //transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        bottom:  0;
+        top: 0;
+        right: -100%;
+        left: auto;
+      }
+      &.opened {
+        visibility: visible;
+        bottom: 0;
+        right: 0;
+      }
+
+      div.configuration-panel-wrapper {
+        position: relative;
+        height: 100%;
+        padding: 35px 20px;
+        @media screen and (min-width: 768px) {
+          padding: 35px 25px;
+        }
+        @media screen and (min-width: 1024px) {
+          padding: 35px 30px;
+        }
+        @media screen and (min-width: 1200px) {
+          padding: 35px;
+        }
+        img#close {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          height: 25px;
+          width: 25px;
+          cursor: pointer;
+        }
+        div.you-chose {
+          @include font-size(14px);
+          font-weight: 300;
+        }
+        div.object-name {
+          @include font-size(28px);
+          font-weight: 700;
+        }
+        div.configuration-container {
+          margin-top: 45px;
+          div.configuration-container-caption {
+            @include font-size(20px);
+            font-weight: 700;
+          }
+          div.configuration-container-inner {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            margin: 0 -12px;
+            div.configuration-object-name {
+              padding: 0 12px;
+              width: 100%;
+            }
+            img.configuration-element {
+              //padding: 10px;
+              cursor: pointer;
+              width: 64px;
+              height: 64px;
+              margin: 12px;
+              //border-radius: 50%;
+              border: none;
+              box-shadow: 0 0 0 0 $grey-dark inset, 0 0 0 0 $grey-dark;
+              transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+              &.selected {
+                //border: solid 5px $adacto;
+                box-shadow: 0 0 0 5px $adacto inset, 0 0 0 5px $adacto;
+                cursor: default;
+              }
+            }
+            div.configuration-selected {
+              width: 100%;
+              padding: 0 12px;
+              margin-bottom: 45px;
+              @include font-size(14px);
+              font-weight: 300;
+              span {
+                font-weight: 400;
+              }
+            }
+          }
+        }
+        div.apply-button {
+          /*position: absolute;
+          left: 15px;
+          right: 15px;
+          bottom: 15px;*/
+          margin: 25px 0;
+          @media screen and (min-width: 768px) {
+            /*left: 25px;
+            right: 25px;
+            bottom: 25px;*/
+            margin: 25px 0;
+          }
+          @media screen and (min-width: 1024px) {
+            /*left: 30px;
+            right: 30px;
+            bottom: 30px;*/
+            margin: 30px 0;
+          }
+          @media screen and (min-width: 1200px) {
+            /*left: 35px;
+            right: 35px;
+            bottom: 35px;*/
+            margin: 35px 0;
+          }
+          button {
+            width: 100%;
+            text-transform: uppercase;
+            @include font-size(16px);
+            font-weight: 500;
+            text-align: center;
+            color: white;
+            background-color: $grey-dark;
+
+            border-radius: 26px;
+            border: none;
+            height: 46px;
+            line-height: 20px;
+            padding: 10px 0;
+            &:hover, &:active {
+              background-color: lighten($grey-dark, 20%);
+            }
+          }
+        }
+        div.settings-container {
+          margin-top: 15px;
+          @media screen and (min-width: 768px){
+            max-width: 75%;
+          }
+          @media screen and (min-width: 1024px){
+            max-width: 70%;
+          }
+          @media screen and (min-width: 1200px){
+            max-width: 65%;
+          }
+          @media screen and (min-width: 1440px){
+            max-width: 58%;
+          }
+          div.setting-item-caption {
+            @include font-size(18px);
+            font-weight: 700;
+          }
+          div.setting-item-description {
+            @include font-size(14px);
+            font-weight: 300;
+            margin-top: 12px;
+          }
+          div.setting-item-toggle {
+            display: inline-block;
+            margin-top: 10px;
+            border: solid 3px $grey-dark;
+            background-color: $grey-dark;
+
+            span {
+              padding: 0 5px;
+              color: rgba(255,255,255,0.7);
+              font-weight: 500;
+              text-transform: uppercase;
+              cursor: pointer;
+              &.selected {
+                padding: 0 12px;
+                display: inline-block;
+                background-color: $adacto;
+                color: $text;
+                font-weight: 700;
+                cursor: default;
+              }
+            }
+          }
+        }
+        div.object-image-preview {
+          margin: 10px 0;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+        div.object-link {
+          margin-top: 20px;
+          a {
+            color: $grey-dark;
+            font-weight: 700;
+            span.arrow-next-icon {
+              display: inline-block;
+              vertical-align: sub;
+              background-image: url('/assets/images/arrow_next_icon.png');
+              background-repeat: no-repeat;
+              background-size: cover;
+              height: 20px;
+              width: 30px;
+              margin-left: 8px;
+            }
+            &:hover, &:active {
+              color: $adacto;
+              span.arrow-next-icon {
+                background-image: url('/assets/images/arrow_next_yellow_icon.png');
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

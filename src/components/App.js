@@ -6,7 +6,7 @@ export default class App extends React.Component {
   // render
   render() {
     return (
-      <div className="container">
+      <div className="app-cmp">
         {this.props.children}
       </div>
     );

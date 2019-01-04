@@ -1,0 +1,25 @@
+$adacto: #D5EE00;
+$text: #1a1a1a;
+$grey-dark: #333;
+$grey-light: #ccc;
+
+$browser-context: 16;
+
+@function em($pixels, $context: $browser-context) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1em;
+}
+
+@mixin font-size($pixels)
+{
+  font-size: $pixels;
+  font-size: em($pixels);
+}
+
